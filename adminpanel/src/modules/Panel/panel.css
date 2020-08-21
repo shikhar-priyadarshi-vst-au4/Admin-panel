@@ -1,0 +1,8 @@
+.scrolling_effect::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE and Edge */
+  .scrolling_effect {
+    -ms-overflow-style: none;
+  }
