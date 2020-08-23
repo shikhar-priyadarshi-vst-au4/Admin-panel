@@ -1,0 +1,154 @@
+[
+    {
+        "required": {
+            "first": [
+                {
+                    "name": "symbol",
+                    "placeholder": "Symbol",
+                    "value": "",
+                    "type": "text"
+                },
+                {
+                    "name": "type",
+                    "placeholder": "Type",
+                    "value": "",
+                    "type": "text"
+                },
+                {
+                    "name": "status",
+                    "placeholder": "Status",
+                    "value": "",
+                    "type": "text"
+                },
+                {
+                    "name": "is_enabled",
+                    "placeholder": "Enabled",
+                    "value": "",
+                    "type": "text"
+                },
+                {
+                    "name": "settling_asset_id",
+                    "placeholder": "Settling Asset Id",
+                    "value": "",
+                    "type": "text"
+                },
+                {
+                    "name": "spot_id",
+                    "placeholder": "Spot Id",
+                    "value": "",
+                    "type": "text"
+                }
+            ],
+            "second": [
+                {
+                    "name": "initial_margin",
+                    "placeholder": "Initial Margin",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "maintenance_margin",
+                    "placeholder": "Maintenance Margin",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "position_size_limit",
+                    "placeholder": "Position Size Limit",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "price_band",
+                    "placeholder": "Price Brand",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "tick_size",
+                    "placeholder": "Tick Size",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "contract_size",
+                    "placeholder": "Contract Size",
+                    "value": "",
+                    "type": "number"
+                }
+            ]
+        },
+        "optional": {
+            "second": [
+                {
+                    "name": "taker_comission_rate",
+                    "placeholder": "Taker Commission Rate",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "maker_comission_rate",
+                    "placeholder": "Maker Commission Rate",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "liquidation_commission_rate",
+                    "placeholder": "Liquidation Commission Rate",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "settlement_commission_rate",
+                    "placeholder": "Settlement Commission Rate",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "max_leverage_notional",
+                    "placeholder": "Max Leverage Notional",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "default_leverage",
+                    "placeholder": "Default Leverage",
+                    "value": "",
+                    "type": "number"
+                },
+                {
+                    "name": "impact_size",
+                    "placeholder": "Impact Size",
+                    "value": "",
+                    "type": "number"
+                }
+            ],
+            "third": [
+                {
+                    "name": "settlement_time",
+                    "placeholder": "Settlement Time",
+                    "value": "",
+                    "type": "time"
+                },
+                {
+                    "name": "launch_time",
+                    "placeholder": "Launch Time",
+                    "value": "",
+                    "type": "time"
+                },
+                {
+                    "name": "auction_start_time",
+                    "placeholder": "Auction Start Time",
+                    "value": "",
+                    "type": "time"
+                },
+                {
+                    "name": "auction_finish_time",
+                    "placeholder": "Auction Finish Time",
+                    "value": "",
+                    "type": "time"
+                }
+            ]
+        }
+    }
+]

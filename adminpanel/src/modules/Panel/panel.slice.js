@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 // import SecureLS from "secure-ls";
-import { getAllAssets, getAllContracts, getAllSpots, getContract, getSpot } from './panel.service';
+import {
+    getAllAssets, getAllContracts, getAllSpots, getContract, getSpot,
+    createContract, createAsset, createSpot, deleteContract, deleteAsset,
+    deleteSpot
+} from './panel.service';
 
 export const panelSlice = createSlice({
     name: "panel",
@@ -75,6 +79,10 @@ export const {
     fetchAsset,
     fetchContract,
     fetchSpot,
+    created,
+    updated,
+    deleted,
+    resetFlags,
     reset } = panelSlice.actions;
 
 
@@ -174,7 +182,125 @@ export const Spot = (symbol) => {
     }
 }
 
+export const createNewContract = () => {
+    return async dispatch => {
+        try {
+
+        }
+        catch (error) {
+            dispatch(reset());
+        }
+    }
+}
+
+export const createNewAsset = () => {
+    return async dispatch => {
+        try {
+
+        }
+        catch (error) {
+            dispatch(reset());
+        }
+    }
+}
+
+export const createNewSpot = () => {
+    return async dispatch => {
+        try {
+
+        }
+        catch (error) {
+            dispatch(reset());
+        }
+    }
+}
+
+export const updateContract = () => {
+    return async dispatch => {
+        try {
+
+        }
+        catch (error) {
+            dispatch(reset());
+        }
+    }
+}
+
+export const updateAsset = () => {
+    return async dispatch => {
+        try {
+
+        }
+        catch (error) {
+            dispatch(reset());
+        }
+    }
+}
+
+export const updateSpot = () => {
+    return async dispatch => {
+        try {
+
+        }
+        catch (error) {
+            dispatch(reset());
+        }
+    }
+}
+
+export const removeContract = (symbol) => {
+    return async dispatch => {
+        try {
+            const response = await deleteContract(symbol);
+            let { data, status, success } = response;
+            console.log(response);
+            if (status === 200 && success) {
+                dispatch(deleted())
+            }
+        }
+        catch (error) {
+            dispatch(reset());
+        }
+    }
+}
+
+export const removeAsset = (symbol) => {
+    return async dispatch => {
+        try {
+            const response = await deleteAsset(symbol);
+            let { data, status, success } = response;
+            console.log(response);
+            if (status === 200 && success) {
+                dispatch(deleted())
+            }
+        }
+        catch (error) {
+            dispatch(reset());
+        }
+    }
+}
+
+export const removeSpot = (symbol) => {
+    return async dispatch => {
+        try {
+            const response = await deleteSpot(symbol);
+            let { data, status, success } = response;
+            console.log(response);
+            if (status === 200 && success) {
+                dispatch(deleted())
+            }
+        }
+        catch (error) {
+            dispatch(reset());
+        }
+    }
+}
+
+export const restoreFlags = () => {
+    return dispatch => {
+        dispatch(resetFlags())
+    }
+}
+
+
 export const panel = (state) => state.panel;
-// export const assets = (state) => state.panel.assets;
-// export const contracts = (state) => state.panel.contracts;
-// export const spots = (state) => state.panel.spots;

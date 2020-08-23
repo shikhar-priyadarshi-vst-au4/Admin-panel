@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Box, Select, Button, Stack, Icon } from "@chakra-ui/core";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Asset, Contract, Spot, panel } from './panel.slice';
-
+import { ModalContext } from './Context/context.modal';
 
 const createBtn = {
     leftIcon: "add",
@@ -55,8 +55,9 @@ const deletebtn = {
 }
 
 export const LeftPanelGrid = () => {
-    // const history = useHistory();
+    const history = useHistory();
     const dispatch = useDispatch();
+    const context = useContext(ModalContext);
     const [data, setData] = useState({
         symbol_asset: "",
         symbol_contract: "",
@@ -113,9 +114,9 @@ export const LeftPanelGrid = () => {
                         )}
                     </Select>
                     <Box display={"flex"} justifyContent={"space-between"} my={"2rem"}>
-                        <Button {...createBtn}>Create</Button>
+                        <Button {...createBtn} onClick={() => context.openCreateAsset()}>Create</Button>
                         <Button {...updateBtn}>Update</Button>
-                        <Button {...deletebtn}>Delete</Button>
+                        <Button {...deletebtn} onClick={() => context.openDeleteAsset()}>Delete</Button>
                     </Box>
                 </Box>
                 <Box>
@@ -131,9 +132,9 @@ export const LeftPanelGrid = () => {
                         )}
                     </Select>
                     <Box display={"flex"} justifyContent={"space-between"} my={"2rem"}>
-                        <Button {...createBtn}>Create</Button>
-                        <Button {...updateBtn}>Update</Button>
-                        <Button {...deletebtn}>Delete</Button>
+                        <Button {...createBtn} onClick={() => history.push('/create/contract')}>Create</Button>
+                        <Button {...updateBtn} onClick={() => history.push('/create/contract')}>Update</Button>
+                        <Button {...deletebtn} onClick={() => context.openDeleteContract()}>Delete</Button>
                     </Box>
                 </Box>
                 <Box>
@@ -149,9 +150,9 @@ export const LeftPanelGrid = () => {
                         )}
                     </Select>
                     <Box display={"flex"} justifyContent={"space-between"} my={"2rem"}>
-                        <Button {...createBtn}>Create</Button>
+                        <Button {...createBtn} onClick={() => context.openCreateSpot()}>Create</Button>
                         <Button {...updateBtn}>Update</Button>
-                        <Button {...deletebtn}>Delete</Button>
+                        <Button {...deletebtn} onClick={() => context.openDeleteSpot()}>Delete</Button>
                     </Box>
                 </Box>
             </Stack>
