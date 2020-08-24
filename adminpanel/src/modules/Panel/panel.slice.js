@@ -182,10 +182,15 @@ export const Spot = (symbol) => {
     }
 }
 
-export const createNewContract = () => {
+export const createNewContract = (payload) => {
     return async dispatch => {
         try {
-
+            let response = await createContract(payload);
+            let { data, status, success } = response;
+            console.log("response", response);
+            if (status === 200 && success) {
+                dispatch(created())
+            }
         }
         catch (error) {
             dispatch(reset());
@@ -193,10 +198,15 @@ export const createNewContract = () => {
     }
 }
 
-export const createNewAsset = () => {
+export const createNewAsset = (payload) => {
     return async dispatch => {
         try {
-
+            let response = await createAsset(payload);
+            let { data, status, success } = response;
+            console.log("response", response);
+            if (status === 200 && success) {
+                dispatch(created())
+            }
         }
         catch (error) {
             dispatch(reset());
@@ -204,10 +214,15 @@ export const createNewAsset = () => {
     }
 }
 
-export const createNewSpot = () => {
+export const createNewSpot = (payload) => {
     return async dispatch => {
         try {
-
+            let response = await createSpot(payload);
+            let { data, status, success } = response;
+            console.log("response", response);
+            if (status === 200 && success) {
+                dispatch(created())
+            }
         }
         catch (error) {
             dispatch(reset());

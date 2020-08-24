@@ -133,7 +133,7 @@ export const LeftPanelGrid = () => {
                     </Select>
                     <Box display={"flex"} justifyContent={"space-between"} my={"2rem"}>
                         <Button {...createBtn} onClick={() => history.push('/create/contract')}>Create</Button>
-                        <Button {...updateBtn} onClick={() => history.push('/create/contract')}>Update</Button>
+                        <Button {...updateBtn} onClick={() => history.push('/update/contract')}>Update</Button>
                         <Button {...deletebtn} onClick={() => context.openDeleteContract()}>Delete</Button>
                     </Box>
                 </Box>

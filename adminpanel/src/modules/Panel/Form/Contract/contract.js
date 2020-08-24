@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { Stepper } from './Stepper/Stepper';
 import { ContractStepFirst } from './contract.step.first';
 import { ContractStepSecond } from './contract.step.second';
 import { ContractStepThird } from './contract.step.third';
 import { OBJECT_MAP_TO_JSON, JSON_MAP_TO_OBJECT } from './ObjectMapping/object.map';
-import { panel } from '../../panel.slice';
+import { panel, createNewContract } from '../../panel.slice';
 
 export const ContractForm = () => {
     const { contract } = useSelector(panel);
-    console.log(contract);
+    const { operation } = useParams();
+    const dispatch = useDispatch();
+    const value = operation === "update" ? contract : null;
     const { FIRST_REQ = null, SECOND_REQ = null, SECOND_OPT = null,
         THIRD_OPT = null, FIRST_REQ_RESP = null, SECOND_REQ_RESP = null,
-        SECOND_OPT_RESP = null, THIRD_OPT_RESP = null } = OBJECT_MAP_TO_JSON(contract);
+        SECOND_OPT_RESP = null, THIRD_OPT_RESP = null } = OBJECT_MAP_TO_JSON(value);
 
     const [formOne, setFormOne] = useState(FIRST_REQ || FIRST_REQ_RESP);
     const [formTwoReq, setFormTwoReq] = useState(SECOND_REQ || SECOND_REQ_RESP);
@@ -55,7 +58,8 @@ export const ContractForm = () => {
     const changeHandleThird = (e) => {
         let result = formThreeOpt.map(v => {
             if (v.name === e.target.name) {
-                v.value = e.target.value;
+                // v.value = e.target.value;
+                v.value = null;
             }
             return v;
         })
@@ -63,14 +67,22 @@ export const ContractForm = () => {
     }
 
     const submitHandle = () => {
+        let form_One = formOne.map(v => {
+            if (v.name === "is_enabled") {
+                v.value = Boolean(v.value === "Yes") || !Boolean(v.value === "No");
+
+            }
+            return v;
+        })
         const json = {
-            first_req: formOne,
+            first_req: form_One,
             second_req: formTwoReq,
             second_opt: formTwoOpt,
             third_opt: formThreeOpt
         }
         const result = JSON_MAP_TO_OBJECT(json);
         console.log("result", result);
+        dispatch(createNewContract(result));
     }
 
     return <>

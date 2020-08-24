@@ -12,19 +12,35 @@
                     "name": "type",
                     "placeholder": "Type",
                     "value": "",
-                    "type": "text"
+                    "type": "text",
+                    "options": [
+                        "futures",
+                        "perpetual_futures",
+                        "spread_futures",
+                        "options",
+                        "spots"
+                    ]
                 },
                 {
                     "name": "status",
                     "placeholder": "Status",
                     "value": "",
-                    "type": "text"
+                    "type": "text",
+                    "options": [
+                        "operational",
+                        "disrupted",
+                        "disrupted_post_only"
+                    ]
                 },
                 {
                     "name": "is_enabled",
                     "placeholder": "Enabled",
                     "value": "",
-                    "type": "text"
+                    "type": "text",
+                    "options": [
+                        "Yes",
+                        "No"
+                    ]
                 },
                 {
                     "name": "settling_asset_id",

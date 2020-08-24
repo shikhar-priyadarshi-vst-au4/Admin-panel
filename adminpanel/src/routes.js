@@ -17,7 +17,7 @@ const Router = props => {
                     </Route>
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/panel" component={Panel} />
-                    <Route exact path={"/create/contract"} component={ContractForm} />
+                    <Route exact path={"/:operation/contract"} component={ContractForm} />
                     <Route exact path="/test" component={SpotCreateModal} />
                     <Route exact path="*" render={() => <Redirect to="/login" />} />
                 </Switch>

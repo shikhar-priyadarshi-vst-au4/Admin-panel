@@ -3,10 +3,11 @@ import { AdminModal } from '../panel.modal';
 import {
     Stack, FormControl, FormLabel, Input, ButtonGroup, Button, Select,
 } from "@chakra-ui/core";
-
+import { useDispatch } from 'react-redux';
+import { createNewAsset } from '../../../panel.slice';
 
 export const AssetCreateModal = (props) => {
-
+    const dispatch = useDispatch();
     const [state, setState] = useState({
         name: "",
         precision: "",
@@ -15,11 +16,17 @@ export const AssetCreateModal = (props) => {
 
     const changeHandler = (e) => setState({ ...state, [e.target.name]: e.target.value })
 
+    const submit = () => {
+        if (!!state.name && !!state.precision && !!state.symbol) {
+            dispatch(createNewAsset(state));
+        }
+    }
+
     return <>
         <AdminModal
             heading={"Create Asset"}
             form={<Form {...state} change={changeHandler} />}
-            buttonGroup={<BtnGroup onCloseEvent={props.onClose} />}
+            buttonGroup={<BtnGroup onCloseEvent={props.onClose} onSubmitEvent={submit} />}
             isOpen={props.isOpen}
             onCloseEvent={props.onClose} />
     </>
@@ -38,12 +45,9 @@ const Form = (props) => {
                 <FormLabel htmlFor="precision">Precision</FormLabel>
                 <Input type="text" id="precision" name="precision" value={props.precision} onChange={props.change} />
             </FormControl>
-            <FormControl isRequired>
-                <FormLabel htmlFor="symbol">Enabled</FormLabel>
-                <Select placeholder="Select symbol" id="symbol" name="symbol" value={props.symbol} onChange={props.change}>
-                    <option value={true}>Yes</option>
-                    <option value={false}>No</option>
-                </Select>
+            <FormControl isRequired mr={"2rem"}>
+                <FormLabel htmlFor="symbol">Symbol</FormLabel>
+                <Input type="text" id="symbol" name="symbol" value={props.symbol} onChange={props.change} />
             </FormControl>
         </Stack>
     </>
@@ -51,7 +55,7 @@ const Form = (props) => {
 
 const BtnGroup = (props) => {
     return <ButtonGroup>
-        <Button variantColor="teal" variant="solid">
+        <Button variantColor="teal" variant="solid" onClick={() => props.onSubmitEvent()}>
             Create
         </Button>
         <Button variantColor="teal" variant="outline" onClick={() => props.onCloseEvent()}>
