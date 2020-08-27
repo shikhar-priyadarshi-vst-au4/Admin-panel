@@ -1,11 +1,11 @@
 import React, { createContext, useState } from 'react';
-import { SpotCreateModal } from './Modal/Spot/create.spot.modal'
-import { SpotDeleteModal } from './Modal/Spot/delete.spot.modal';
-import { AssetCreateModal } from './Modal/Asset/create.asset.modal';
-import { AssetDeleteModal } from "./Modal/Asset/delete.asset.modal";
-import { ContractDeleteModal } from './Modal/Contract/delete.contract.modal';
-import { AssetUpdateModal } from './Modal/Asset/update.asset.modal';
-import { SpotUpdateModal } from './Modal/Spot/update.spot.modal';
+import { SpotCreateModal } from './Spot/create.spot.modal'
+import { SpotDeleteModal } from './Spot/delete.spot.modal';
+import { AssetCreateModal } from './Asset/create.asset.modal';
+import { AssetDeleteModal } from "./Asset/delete.asset.modal";
+import { ContractDeleteModal } from './Contract/delete.contract.modal';
+import { AssetUpdateModal } from './Asset/update.asset.modal';
+import { SpotUpdateModal } from './Spot/update.spot.modal';
 
 const ModalContext = createContext({
     isCreateAssetOpen: false,

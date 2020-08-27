@@ -6,11 +6,11 @@ import { ContractStepFirst } from './contract.step.first';
 import { ContractStepSecond } from './contract.step.second';
 import { ContractStepThird } from './contract.step.third';
 import { OBJECT_MAP_TO_JSON, JSON_MAP_TO_OBJECT } from './ObjectMapping/object.map';
-import { panel, createNewContract } from '../../panel.slice';
+import { panel, createNewContract, UpdateContract } from '../../panel.slice';
 import { Zoom } from 'react-reveal';
 
 export const ContractForm = () => {
-    const { contract } = useSelector(panel);
+    const { contract, contractSymbol } = useSelector(panel);
     const { operation } = useParams();
     const dispatch = useDispatch();
     const value = operation === "update" ? contract : null;
@@ -83,7 +83,12 @@ export const ContractForm = () => {
         }
         const result = JSON_MAP_TO_OBJECT(json);
         console.log("result", result);
-        dispatch(createNewContract(result));
+        if (operation === "update") {
+            dispatch(UpdateContract(result, contractSymbol));
+        }
+        else {
+            dispatch(createNewContract(result));
+        }
     }
 
     return <>

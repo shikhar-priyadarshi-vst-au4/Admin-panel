@@ -13,6 +13,8 @@ export const RightPanelGrid = () => {
     useEffect(() => {
         setCheck('Asset');
     }, [])
+
+
     useEffect(() => {
         if (check === 'Asset') setJSON(asset);
         if (check === 'Contract') setJSON(contract);

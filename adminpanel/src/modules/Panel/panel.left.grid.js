@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { Box, Select, Button, Stack, Icon } from "@chakra-ui/core";
 import { FaEdit, FaTrash } from 'react-icons/fa';
 import { Asset, Contract, Spot, panel } from './panel.slice';
-import { ModalContext } from './Context/context.modal';
+import { ModalContext } from './Context/Modal/context.modal';
 
 const createBtn = {
     leftIcon: "add",
@@ -66,6 +66,7 @@ export const LeftPanelGrid = () => {
     const symbolAsset = useRef(null);
     const symbolContract = useRef(null);
     const symbolSpot = useRef(null);
+    const prevSpots = useRef([]);
     const { assets, contracts, spots, asset, contract, spot } = useSelector(panel);
 
     useEffect(() => {
@@ -90,6 +91,15 @@ export const LeftPanelGrid = () => {
         }
 
     }, [data.symbol_asset, data.symbol_contract, data.symbol_spot])
+
+    useEffect(() => {
+        if (!!data.symbol_spot &&
+            data.symbol_spot === symbolSpot.current &&
+            spots !== prevSpots.current) {
+            prevSpots.current = spots;
+            dispatch(Spot(data.symbol_spot))
+        }
+    }, [spots])
 
     const onchange = (e) => {
         let { value, name } = e.target;

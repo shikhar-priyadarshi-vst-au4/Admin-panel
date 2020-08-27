@@ -3,13 +3,15 @@ import { AdminModal } from '../panel.modal';
 import {
     Stack, ButtonGroup, Button, Text
 } from "@chakra-ui/core";
+import { useDispatch, useSelector } from 'react-redux';
+import { removeSpot, panel } from '../../../panel.slice'
 
 const Form = (props) => {
 
     return <>
         <Stack spacing={4}>
             <Text>
-                Do you want to delete the spot?
+                {`Do you want to delete the spot (${props.symbol})?`}
             </Text>
         </Stack>
     </>
@@ -17,7 +19,7 @@ const Form = (props) => {
 
 const BtnGroup = (props) => {
     return <ButtonGroup>
-        <Button color={"blue.400"} variantColor={"white.100"} variant="outline" cursor={"pointer"}>
+        <Button color={"blue.400"} variantColor={"white.100"} variant="outline" cursor={"pointer"} onClick={() => props.onClickEvent()} >
             Delete
         </Button>
         <Button color={"blue.400"} variantColor={"white.100"} variant="outline" cursor={"pointer"} onClick={() => props.onCloseEvent()}>
@@ -28,8 +30,17 @@ const BtnGroup = (props) => {
 
 
 export const SpotDeleteModal = (props) => {
-
+    const dispatch = useDispatch();
+    const { spotSymbol } = useSelector(panel)
+    const onDelete = () => {
+        if (!!spotSymbol) {
+            dispatch(removeSpot(spotSymbol));
+            props.onClose();
+        }
+    }
     return <>
-        <AdminModal heading={"Confirmation"} form={<Form />} buttonGroup={<BtnGroup onCloseEvent={props.onClose} />} isOpen={props.isOpen} onCloseEvent={props.onClose} />
+        <AdminModal heading={"Confirmation"} form={<Form symbol={spotSymbol} />}
+            buttonGroup={<BtnGroup onCloseEvent={props.onClose} onClickEvent={onDelete} />}
+            isOpen={props.isOpen} onCloseEvent={props.onClose} />
     </>
 }

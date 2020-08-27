@@ -3,7 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
     getAllAssets, getAllContracts, getAllSpots, getContract, getSpot,
     createContract, createAsset, createSpot, deleteContract, deleteAsset,
-    deleteSpot
+    deleteSpot,
+    updateAsset,
+    updateSpot,
+    updateContract
 } from './panel.service';
 
 export const panelSlice = createSlice({
@@ -18,6 +21,7 @@ export const panelSlice = createSlice({
         asset: {},
         contract: {},
         spot: {},
+        success: false,
         createdStatus: false,
         updatedStatus: false,
         deletedStatus: false
@@ -45,13 +49,16 @@ export const panelSlice = createSlice({
             state.spotSymbol = action.payload.symbol;
         },
         created: (state, action) => {
-            state.createdStatus = true;
+            state.createdStatus = !state.createdStatus;
+            state.createsuccess = true;
         },
         updated: (state, action) => {
-            state.updatedStatus = true;
+            state.updatedStatus = !state.updatedStatus;
+            state.updatesuccess = true;
         },
         deleted: (state, action) => {
-            state.deletedStatus = true;
+            state.deletedStatus = !state.deletedStatus;
+            state.deletesuccess = true;
         },
         resetFlags: (state, action) => {
             state.createdStatus = false;
@@ -230,10 +237,14 @@ export const createNewSpot = (payload) => {
     }
 }
 
-export const updateContract = () => {
+export const UpdateContract = (payload, symbol) => {
     return async dispatch => {
         try {
-
+            let response = await updateContract(payload, symbol);
+            console.log("updateContract", response);
+            if (response.status === 200 && response.success) {
+                dispatch(updated());
+            }
         }
         catch (error) {
             dispatch(reset());
@@ -241,10 +252,14 @@ export const updateContract = () => {
     }
 }
 
-export const updateAsset = () => {
+export const UpdateAsset = (payload) => {
     return async dispatch => {
         try {
-
+            let response = await updateAsset(payload);
+            console.log("updateAsset", response);
+            if (response.status === 200 && response.success) {
+                dispatch(updated())
+            }
         }
         catch (error) {
             dispatch(reset());
@@ -252,10 +267,14 @@ export const updateAsset = () => {
     }
 }
 
-export const updateSpot = () => {
+export const UpdateSpot = (payload, symbol) => {
     return async dispatch => {
         try {
-
+            let response = await updateSpot(payload, symbol);
+            console.log("updateSpot", response);
+            if (response.status === 200 && response.success) {
+                dispatch(updated())
+            }
         }
         catch (error) {
             dispatch(reset());

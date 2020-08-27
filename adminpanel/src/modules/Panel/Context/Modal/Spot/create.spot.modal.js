@@ -14,7 +14,8 @@ export const SpotCreateModal = (props) => {
         is_enabled: false,
         is_composite: false,
         underlying_asset_id: "",
-        quoting_asset_id: ""
+        quoting_asset_id: "",
+        symbol: ""
     })
 
     const changeHandler = (e) => {
@@ -27,7 +28,8 @@ export const SpotCreateModal = (props) => {
             !!state.underlying_asset_id &&
             !!state.quoting_asset_id &&
             !!state.is_composite &&
-            !!state.is_enabled) {
+            !!state.is_enabled &&
+            !!state.symbol) {
             dispatch(createNewSpot(state));
         }
     }
@@ -55,6 +57,10 @@ const Form = (props) => {
             <FormControl isRequired mr={"2rem"}>
                 <FormLabel htmlFor="volatility_threshold">Volatility Threshold</FormLabel>
                 <Input type="text" id="volatility_threshold" name="volatility_threshold" value={props.volatility_threshold} onChange={props.change} />
+            </FormControl>
+            <FormControl isRequired mr={"2rem"} >
+                <FormLabel htmlFor="symbol">Symbol</FormLabel>
+                <Input type="text" id="symbol" name="symbol" value={props.symbol} onChange={props.change} />
             </FormControl>
             <FormControl isRequired>
                 <FormLabel htmlFor="is_enabled">Enabled</FormLabel>

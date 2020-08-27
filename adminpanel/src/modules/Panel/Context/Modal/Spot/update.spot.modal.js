@@ -4,24 +4,27 @@ import {
     Stack, FormControl, FormLabel, Input, ButtonGroup, Button, Select,
 } from "@chakra-ui/core";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateSpot, panel } from '../../../panel.slice';
+import { UpdateSpot, panel } from '../../../panel.slice';
 
 export const SpotUpdateModal = (props) => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const { spot } = useSelector(panel);
-
+    const [symbol, setSymbol] = useState("");
     const [state, setState] = useState({
         description: "",
         volatility_threshold: "",
         is_enabled: false,
         is_composite: false,
         underlying_asset_id: "",
-        quoting_asset_id: ""
+        quoting_asset_id: "",
+        symbol: ""
     })
 
     useEffect(() => {
         if (!!spot) {
-            setState({ ...state, ...spot });
+            let { id, updated_at, inserted_at, ...rest } = spot
+            setState({ ...state, ...rest });
+            setSymbol(rest.symbol);
         }
     }, [spot])
 
@@ -30,15 +33,15 @@ export const SpotUpdateModal = (props) => {
     }
 
     const submit = () => {
-        // if (!!state.description &&
-        //     !!state.volatility_threshold &&
-        //     !!state.underlying_asset_id &&
-        //     !!state.quoting_asset_id &&
-        //     !!state.is_composite &&
-        //     !!state.is_enabled) {
-        //     dispatch(updateSpot(state));
-        // }
-        console.log(state);
+        if (!!state.description &&
+            !!state.volatility_threshold &&
+            !!state.underlying_asset_id &&
+            !!state.quoting_asset_id &&
+            !!state.is_composite &&
+            !!state.is_enabled &&
+            !!state.symbol) {
+            dispatch(UpdateSpot(state, symbol));
+        }
     }
 
     return <>
@@ -64,6 +67,10 @@ const Form = (props) => {
             <FormControl isRequired mr={"2rem"}>
                 <FormLabel htmlFor="volatility_threshold">Volatility Threshold</FormLabel>
                 <Input type="text" id="volatility_threshold" name="volatility_threshold" value={props.volatility_threshold} onChange={props.change} />
+            </FormControl>
+            <FormControl isRequired mr={"2rem"} >
+                <FormLabel htmlFor="symbol">Symbol</FormLabel>
+                <Input type="text" id="symbol" name="symbol" value={props.symbol} onChange={props.change} isReadOnly />
             </FormControl>
             <FormControl isRequired>
                 <FormLabel htmlFor="is_enabled">Enabled</FormLabel>

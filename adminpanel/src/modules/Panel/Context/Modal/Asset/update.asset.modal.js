@@ -4,11 +4,12 @@ import {
     Stack, FormControl, FormLabel, Input, ButtonGroup, Button, Select,
 } from "@chakra-ui/core";
 import { useDispatch, useSelector } from 'react-redux';
-import { updateAsset, panel } from '../../../panel.slice';
+import { UpdateAsset, panel } from '../../../panel.slice';
 
 export const AssetUpdateModal = (props) => {
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const { asset } = useSelector(panel)
+    const [asset_id, setAssetId] = useState("");
     const [state, setState] = useState({
         name: "",
         precision: "",
@@ -17,7 +18,9 @@ export const AssetUpdateModal = (props) => {
 
     useEffect(() => {
         if (!!asset) {
-            setState({ ...state, ...asset });
+            let { id, ...rest } = asset;
+            setAssetId(id)
+            setState({ ...state, ...rest });
         }
     }, [asset])
 
@@ -25,9 +28,9 @@ export const AssetUpdateModal = (props) => {
 
     const submit = () => {
         console.log(state);
-        // if (!!state.name && !!state.precision && !!state.symbol) {
-        //     dispatch(updateAsset(state));
-        // }
+        if (!!state.name && !!state.precision && !!state.symbol) {
+            dispatch(UpdateAsset(state));
+        }
     }
 
     return <>
