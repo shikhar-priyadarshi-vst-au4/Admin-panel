@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AdminModal } from '../panel.modal';
 import {
     Stack, FormControl, FormLabel, Input, ButtonGroup, Button, Select,
 } from "@chakra-ui/core";
 import { useDispatch, useSelector } from 'react-redux';
-import { createNewSpot, panel } from '../../../panel.slice';
+import { updateSpot, panel } from '../../../panel.slice';
 
-export const SpotCreateModal = (props) => {
-    const dispatch = useDispatch();
+export const SpotUpdateModal = (props) => {
+    // const dispatch = useDispatch();
+    const { spot } = useSelector(panel);
+
     const [state, setState] = useState({
         description: "",
         volatility_threshold: "",
@@ -17,25 +19,32 @@ export const SpotCreateModal = (props) => {
         quoting_asset_id: ""
     })
 
+    useEffect(() => {
+        if (!!spot) {
+            setState({ ...state, ...spot });
+        }
+    }, [spot])
+
     const changeHandler = (e) => {
         setState({ ...state, [e.target.name]: e.target.value });
     }
 
     const submit = () => {
-        if (!!state.description &&
-            !!state.volatility_threshold &&
-            !!state.underlying_asset_id &&
-            !!state.quoting_asset_id &&
-            !!state.is_composite &&
-            !!state.is_enabled) {
-            dispatch(createNewSpot(state));
-        }
+        // if (!!state.description &&
+        //     !!state.volatility_threshold &&
+        //     !!state.underlying_asset_id &&
+        //     !!state.quoting_asset_id &&
+        //     !!state.is_composite &&
+        //     !!state.is_enabled) {
+        //     dispatch(updateSpot(state));
+        // }
+        console.log(state);
     }
 
     return <>
         <div style={{ padding: "1rem" }}>
             <AdminModal
-                heading={"Create Spot"}
+                heading={"Update Spot"}
                 form={<Form {...state} change={changeHandler} />}
                 buttonGroup={<BtnGroup onCloseEvent={props.onClose} onSubmitEvent={submit} />}
                 isOpen={props.isOpen}
@@ -89,7 +98,7 @@ const Form = (props) => {
 const BtnGroup = (props) => {
     return <ButtonGroup>
         <Button color={"blue.400"} variantColor={"blue.400"} variant="outline" cursor={"pointer"} onClick={() => props.onSubmitEvent()}>
-            Create
+            Update
         </Button>
         <Button color={"blue.400"} variantColor={"blue.400"} variant="outline" cursor={"pointer"} onClick={() => props.onCloseEvent()}>
             Cancel

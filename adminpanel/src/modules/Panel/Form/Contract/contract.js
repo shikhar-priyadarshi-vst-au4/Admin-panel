@@ -7,6 +7,7 @@ import { ContractStepSecond } from './contract.step.second';
 import { ContractStepThird } from './contract.step.third';
 import { OBJECT_MAP_TO_JSON, JSON_MAP_TO_OBJECT } from './ObjectMapping/object.map';
 import { panel, createNewContract } from '../../panel.slice';
+import { Zoom } from 'react-reveal';
 
 export const ContractForm = () => {
     const { contract } = useSelector(panel);
@@ -87,8 +88,8 @@ export const ContractForm = () => {
 
     return <>
         <Stepper index={tab} changeIndex={setIndex} />
-        {tab === 1 && <ContractStepFirst next={nextIndex} change={changeHandleFirst} formOne={formOne} />}
-        {tab === 2 && <ContractStepSecond prev={prevIndex} next={nextIndex} change={changeHandleSecond} formTwoReq={formTwoReq} formTwoOpt={formTwoOpt} />}
-        {tab === 3 && <ContractStepThird prev={prevIndex} change={changeHandleThird} formThreeOpt={formThreeOpt} submit={submitHandle} />}
+        {tab === 1 && <Zoom><ContractStepFirst next={nextIndex} change={changeHandleFirst} formOne={formOne} /></Zoom>}
+        {tab === 2 && <Zoom><ContractStepSecond prev={prevIndex} next={nextIndex} change={changeHandleSecond} formTwoReq={formTwoReq} formTwoOpt={formTwoOpt} /></Zoom>}
+        {tab === 3 && <Zoom><ContractStepThird prev={prevIndex} change={changeHandleThird} formThreeOpt={formThreeOpt} submit={submitHandle} /></Zoom>}
     </>
 }

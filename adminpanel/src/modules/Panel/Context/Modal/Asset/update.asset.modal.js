@@ -1,30 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AdminModal } from '../panel.modal';
 import {
     Stack, FormControl, FormLabel, Input, ButtonGroup, Button, Select,
 } from "@chakra-ui/core";
-import { useDispatch } from 'react-redux';
-import { createNewAsset } from '../../../panel.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateAsset, panel } from '../../../panel.slice';
 
-export const AssetCreateModal = (props) => {
-    const dispatch = useDispatch();
+export const AssetUpdateModal = (props) => {
+    // const dispatch = useDispatch();
+    const { asset } = useSelector(panel)
     const [state, setState] = useState({
         name: "",
         precision: "",
         symbol: ""
     })
 
+    useEffect(() => {
+        if (!!asset) {
+            setState({ ...state, ...asset });
+        }
+    }, [asset])
+
     const changeHandler = (e) => setState({ ...state, [e.target.name]: e.target.value })
 
     const submit = () => {
-        if (!!state.name && !!state.precision && !!state.symbol) {
-            dispatch(createNewAsset(state));
-        }
+        console.log(state);
+        // if (!!state.name && !!state.precision && !!state.symbol) {
+        //     dispatch(updateAsset(state));
+        // }
     }
 
     return <>
         <AdminModal
-            heading={"Create Asset"}
+            heading={"Update Asset"}
             form={<Form {...state} change={changeHandler} />}
             buttonGroup={<BtnGroup onCloseEvent={props.onClose} onSubmitEvent={submit} />}
             isOpen={props.isOpen}
@@ -56,7 +64,7 @@ const Form = (props) => {
 const BtnGroup = (props) => {
     return <ButtonGroup>
         <Button color={"blue.400"} variantColor={"white.100"} variant="outline" cursor={"pointer"} onClick={() => props.onSubmitEvent()}>
-            Create
+            Update
         </Button>
         <Button color={"blue.400"} variantColor={"blue.400"} variant="outline" cursor={"pointer"} onClick={() => props.onCloseEvent()}>
             Cancel

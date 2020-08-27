@@ -23,9 +23,9 @@ export function AdminModal({ buttonGroup, form, heading = "", isOpen, onCloseEve
                 onClose={onCloseEvent}
             >
                 <ModalOverlay />
-                <ModalContent bg={"white.100"}>
+                <ModalContent bg={"white.100"} width={{ base: "270px", md: "350px", lg: "400px" }} borderRadius={"0.4rem"}>
                     <ModalHeader>{heading}</ModalHeader>
-                    <ModalCloseButton />
+                    <ModalCloseButton bg={"transparent"} border={"none"} cursor={"pointer"} />
                     <ModalBody pb={6}>
                         {form}
                     </ModalBody>

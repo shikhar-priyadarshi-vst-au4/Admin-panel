@@ -4,6 +4,8 @@ import { SpotDeleteModal } from './Modal/Spot/delete.spot.modal';
 import { AssetCreateModal } from './Modal/Asset/create.asset.modal';
 import { AssetDeleteModal } from "./Modal/Asset/delete.asset.modal";
 import { ContractDeleteModal } from './Modal/Contract/delete.contract.modal';
+import { AssetUpdateModal } from './Modal/Asset/update.asset.modal';
+import { SpotUpdateModal } from './Modal/Spot/update.spot.modal';
 
 const ModalContext = createContext({
     isCreateAssetOpen: false,
@@ -17,6 +19,8 @@ const ModalContext = createContext({
     selectedUpdateSpot: "",
     openCreateAsset: () => { },
     closeCreateAsset: () => { },
+    openUpdateAsset: () => { },
+    closeUpdateAsset: () => { },
     openUpdateSpot: () => { },
     closeUpdateSpot: () => { },
     openDeleteContract: () => { },
@@ -51,6 +55,11 @@ const ModalControl = (props) => {
     const openCreateSpot = () => setState({ ...state, isCreateSpotOpen: true });
     const closeCreateSpot = () => setState({ ...state, isCreateSpotOpen: false });
 
+    const openUpdateAsset = () => setState({ ...state, isUpdateAssetOpen: true })
+    const closeUpdateAsset = () => setState({ ...state, isUpdateAssetOpen: false })
+    const openUpdateSpot = () => setState({ ...state, isUpdateSpotOpen: true })
+    const closeUpdateSpot = () => setState({ ...state, isUpdateSpotOpen: false })
+
     const openDeleteContract = () => setState({ ...state, isDeleteContractOpen: true });
     const closeDeleteContract = () => setState({ ...state, isDeleteContractOpen: false });
     const openDeleteAsset = () => setState({ ...state, isDeleteAssetOpen: true });
@@ -60,9 +69,6 @@ const ModalControl = (props) => {
 
     const clearAll = () => setState({ ...state, ...init });
 
-    //  const openUpdateSpot = () => { }
-    //  const closeUpdateSpot = () => { }
-
     return <>
         <ModalProvider value={{
             ...ModalContext,
@@ -71,6 +77,10 @@ const ModalControl = (props) => {
             closeCreateAsset,
             openCreateSpot,
             closeCreateSpot,
+            openUpdateAsset,
+            closeUpdateAsset,
+            openUpdateSpot,
+            closeUpdateSpot,
             openDeleteContract,
             closeDeleteContract,
             openDeleteAsset,
@@ -81,6 +91,8 @@ const ModalControl = (props) => {
         }}>
             {state.isCreateSpotOpen && <SpotCreateModal isOpen={state.isCreateSpotOpen} onClose={closeCreateSpot} />}
             {state.isCreateAssetOpen && <AssetCreateModal isOpen={state.isCreateAssetOpen} onClose={closeCreateAsset} />}
+            {state.isUpdateAssetOpen && <AssetUpdateModal isOpen={state.isUpdateAssetOpen} onClose={closeUpdateAsset} />}
+            {state.isUpdateSpotOpen && <SpotUpdateModal isOpen={state.isUpdateSpotOpen} onClose={closeUpdateSpot} />}
             {state.isDeleteSpotOpen && <SpotDeleteModal isOpen={state.isDeleteSpotOpen} onClose={closeDeleteSpot} />}
             {state.isDeleteAssetOpen && <AssetDeleteModal isOpen={state.isDeleteAssetOpen} onClose={closeDeleteAsset} />}
             {state.isDeleteContractOpen && <ContractDeleteModal isOpen={state.isDeleteContractOpen} onClose={closeDeleteContract} />}

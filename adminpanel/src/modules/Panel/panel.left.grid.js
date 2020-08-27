@@ -115,7 +115,7 @@ export const LeftPanelGrid = () => {
                     </Select>
                     <Box display={"flex"} justifyContent={"space-between"} my={"2rem"}>
                         <Button {...createBtn} onClick={() => context.openCreateAsset()}>Create</Button>
-                        <Button {...updateBtn}>Update</Button>
+                        <Button {...updateBtn} onClick={() => context.openUpdateAsset()}>Update</Button>
                         <Button {...deletebtn} onClick={() => context.openDeleteAsset()}>Delete</Button>
                     </Box>
                 </Box>
@@ -151,7 +151,7 @@ export const LeftPanelGrid = () => {
                     </Select>
                     <Box display={"flex"} justifyContent={"space-between"} my={"2rem"}>
                         <Button {...createBtn} onClick={() => context.openCreateSpot()}>Create</Button>
-                        <Button {...updateBtn}>Update</Button>
+                        <Button {...updateBtn} onClick={() => context.openUpdateSpot()}>Update</Button>
                         <Button {...deletebtn} onClick={() => context.openDeleteSpot()}>Delete</Button>
                     </Box>
                 </Box>
