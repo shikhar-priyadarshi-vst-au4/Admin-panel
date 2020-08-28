@@ -6,6 +6,10 @@ import { Assets, Contracts, Spots, panel } from './panel.slice';
 import { LeftPanelGrid } from './panel.left.grid';
 import { RightPanelGrid } from './panel.right.grid';
 import { ModalControl } from './Context/Modal/context.modal';
+import styled from 'styled-components';
+import { Bounce } from 'react-reveal';
+import './panel.css';
+
 
 export const Panel = () => {
     // const history = useHistory();
@@ -19,15 +23,28 @@ export const Panel = () => {
 
     return <>
         <ModalControl>
-            <SimpleGrid columns={[1, 2]} spacing={10} m={"1rem"}>
-                <Box border={"1px solid"} borderColor={"grey.200"} height="100%" p={4}>
-                    <Text fontSize={"lg"} textAlign={"center"}>Operations</Text>
-                    <LeftPanelGrid />
-                </Box>
-                <Box border={"1px solid"} borderColor={"grey.200"} height="100%">
-                    <RightPanelGrid />
-                </Box>
-            </SimpleGrid>
+            <Container>
+                <SimpleGrid columns={[1, 2]} spacing={6}>
+                    <Bounce left>
+                        <Box borderRadius={"0.5em"} borderColor={"grey.400"} p={4} className="box-elem">
+                            <Text fontSize={"lg"} textAlign={"center"}>Operations</Text>
+                            <LeftPanelGrid />
+                        </Box>
+                    </Bounce>
+                    <Bounce right>
+                        <Box borderRadius={"0.5em"} borderColor={"grey.400"} p={4} className="box-elem">
+                            <RightPanelGrid />
+                        </Box>
+                    </Bounce>
+                </SimpleGrid>
+            </Container>
         </ModalControl>
     </>
 }
+
+
+const Container = styled.div`
+width : 100%;
+background-color : #ffffff;
+overflow-x : hidden;
+`;

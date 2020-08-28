@@ -12,13 +12,13 @@ const createBtn = {
     color: "white.100",
     border: "none",
     cursor: "pointer",
-    bg: "green.500",
+    bg: "#270000b8",
     fontWeight: "500",
     _active: {
-        bg: "green.500"
+        bg: "#270000b8"
     },
     _hover: {
-        bg: "green.500"
+        bg: "#270000b8"
     }
 }
 
@@ -26,15 +26,15 @@ const updateBtn = {
     leftIcon: FaEdit,
     variant: "solid",
     color: "white.100",
-    border: "1px",
+    border: "none",
     cursor: "pointer",
-    bg: "yellow.400",
+    bg: "#270000b8",
     fontWeight: "500",
     _active: {
-        bg: "yellow.400"
+        bg: "#270000b8"
     },
     _hover: {
-        bg: "yellow.400"
+        bg: "#270000b8"
     }
 }
 
@@ -42,15 +42,15 @@ const deletebtn = {
     leftIcon: FaTrash,
     variant: "solid",
     color: "white.100",
-    border: "1px",
+    border: "none",
     cursor: "pointer",
-    bg: "red.500",
+    bg: "#270000b8",
     fontWeight: "500",
     _active: {
-        bg: "red.500"
+        bg: "#270000b8"
     },
     _hover: {
-        bg: "red.500"
+        bg: "#270000b8"
     }
 }
 

@@ -20,10 +20,10 @@ const Form = (props) => {
 
 const BtnGroup = (props) => {
     return <ButtonGroup>
-        <Button color={"blue.400"} variantColor={"white.100"} variant="outline" cursor={"pointer"} onClick={() => props.onClickEvent()}>
+        <Button variantColor="dark" variant="outline" cursor={"pointer"} onClick={() => props.onClickEvent()}>
             Delete
         </Button>
-        <Button color={"blue.400"} variantColor={"white.100"} variant="outline" cursor={"pointer"} onClick={() => props.onCloseEvent()}>
+        <Button variantColor="dark" variant="outline" cursor={"pointer"} onClick={() => props.onCloseEvent()}>
             Cancel
         </Button>
     </ButtonGroup>

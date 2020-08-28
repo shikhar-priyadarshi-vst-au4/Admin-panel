@@ -113,12 +113,12 @@ export const Login = () => {
                                 display="flex"
                                 justifyContent="flex-end"
                                 py={4} px={2}>
-                                <Button w={"200px"} bg={"brand.800"} color={"#fff"} borderColor={"brand.800"}
+                                <Button w={"200px"} bg={"#270000b8"} color={"#fff"} borderColor={"transparent"}
                                     _hover={{
-                                        bg: "brand.800"
+                                        bg: "#270000b8"
                                     }}
                                     _active={{
-                                        bg: "brand.800"
+                                        bg: "#270000b8"
                                     }}
                                     cursor={"pointer"}
                                     onClick={() => onsubmit()}
