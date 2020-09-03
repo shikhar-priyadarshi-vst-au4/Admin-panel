@@ -4,13 +4,14 @@ import Header from "../../components/Header";
 // import { SimpleGrid, Box, Text } from "@chakra-ui/core";
 import { UserLeftInfo } from './user.info.left'
 import { UserRightInfo } from './user.info.right';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useToast } from "@chakra-ui/core";
-
+import { setSuccess } from './user.info.slice';
 
 export const UserInfo = (props) => {
     const { success } = useSelector(state => state.user);
     const toast = useToast();
+    const dispatch = useDispatch();
     useEffect(() => {
         if (!!success) {
             toast({
@@ -20,6 +21,9 @@ export const UserInfo = (props) => {
                 status: "success",
                 duration: 9000,
             })
+        }
+        else {
+            dispatch(setSuccess(false));
         }
     }, [success])
 

@@ -11,6 +11,7 @@ export const UserRightInfo = (props) => {
             <Text fontSize={"lg"} textAlign={"center"}>Action Response</Text>
             <Position>
                 <ReactJson
+                    style={{ width: "100%", wordBreak: "break-word" }}
                     src={response.user}
                 // onEdit={this.onEdit}
                 // onDelete={this.onDelete}
@@ -27,5 +28,6 @@ padding: 1rem;
 const Position = styled.div`
 display : flex;
 justify-content : center;
-margin : 2rem 0;
+margin : 2rem 0rem;
+max-width : 250px;
 `;
