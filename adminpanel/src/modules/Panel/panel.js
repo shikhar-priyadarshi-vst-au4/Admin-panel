@@ -9,6 +9,7 @@ import { ModalControl } from './Context/Modal/context.modal';
 import styled from 'styled-components';
 import { Bounce } from 'react-reveal';
 import './panel.css';
+import Header from "../../components/Header";
 
 
 export const Panel = () => {
@@ -23,6 +24,7 @@ export const Panel = () => {
 
     return <>
         <ModalControl>
+            <Header />
             <Container>
                 <SimpleGrid columns={[1, 2]} spacing={6}>
                     <Bounce left>
