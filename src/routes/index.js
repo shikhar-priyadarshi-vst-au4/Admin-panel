@@ -1,3 +1,4 @@
+
 import { lazy } from 'react'
 
 // use lazy for better code splitting, a.k.a. load faster
@@ -10,6 +11,8 @@ const Modals = lazy(() => import('../pages/Modals'))
 const Tables = lazy(() => import('../pages/Tables'))
 const Page404 = lazy(() => import('../pages/404'))
 const Blank = lazy(() => import('../pages/Blank'))
+const Users = lazy(() => import('../pages/Users/users'));
+
 
 /**
  * ⚠ These are internal routes!
@@ -22,6 +25,10 @@ const Blank = lazy(() => import('../pages/Blank'))
  * `routes/sidebar.js`
  */
 const routes = [
+  {
+    path : '/users/details',
+    component : Users
+  },
   {
     path: '/dashboard', // the url
     component: Dashboard, // view rendered
