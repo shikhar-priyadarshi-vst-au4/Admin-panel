@@ -12,6 +12,7 @@ const Tables = lazy(() => import('../pages/Tables'))
 const Page404 = lazy(() => import('../pages/404'))
 const Blank = lazy(() => import('../pages/Blank'))
 const Users = lazy(() => import('../pages/Users/users'));
+const Analytics = lazy(() => import('../pages/Analytics/analytics'));
 
 
 /**
@@ -28,6 +29,10 @@ const routes = [
   {
     path : '/users/details',
     component : Users
+  },
+  {
+    path : '/users/analysis',
+    component : Analytics
   },
   {
     path: '/dashboard', // the url

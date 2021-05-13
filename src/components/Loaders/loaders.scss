@@ -1,0 +1,10 @@
+$primary-color: rgba(128, 90, 213, 1);
+@import 'loaders.css/src/animations/ball-scale-multiple.scss';
+@import 'loaders.css/src/animations/line-scale-pulse-out-rapid.scss';
+
+.loader-hidden {
+  display: none;
+}
+.loader-active {
+  display: block;
+}

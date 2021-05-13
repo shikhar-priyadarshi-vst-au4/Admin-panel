@@ -7,9 +7,14 @@
  */
 const routes = [
   {
-    path : "/admin/users/details",
+    path : "/app/users/details",
     icon : "HomeIcon",
     name : "Users"
+  },
+  {
+    path : "/app/users/analysis",
+    icon : "HomeIcon",
+    name : "Analysis"
   },
   // {
   //   path: '/app/dashboard', // the url

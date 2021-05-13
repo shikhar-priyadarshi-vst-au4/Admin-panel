@@ -1,11 +1,17 @@
 import React, { Suspense } from 'react'
-import ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom';
+import { Provider } from "react-redux";
+
 import './assets/css/tailwind.output.css'
 import App from './App'
+import store from './app/store';
 import { SidebarProvider } from './context/SidebarContext'
+import { AlertProvider } from './context/AlertContext';
 import ThemedSuspense from './components/ThemedSuspense'
 import { Windmill } from '@windmill/react-ui'
-import * as serviceWorker from './serviceWorker'
+import * as serviceWorker from './serviceWorker';
+
+import './index.scss';
 
 // if (process.env.NODE_ENV !== 'production') {
 //   const axe = require('react-axe')
@@ -13,13 +19,17 @@ import * as serviceWorker from './serviceWorker'
 // }
 
 ReactDOM.render(
-  <SidebarProvider>
-    <Suspense fallback={<ThemedSuspense />}>
-      <Windmill usePreferences>
-        <App />
-      </Windmill>
-    </Suspense>
-  </SidebarProvider>,
+  <Provider store={store}>
+      <SidebarProvider>
+        <AlertProvider>
+          <Suspense fallback={<ThemedSuspense />}>
+            <Windmill usePreferences>
+              <App />
+            </Windmill>
+          </Suspense>
+          </AlertProvider>
+      </SidebarProvider>
+  </Provider>,
   document.getElementById('root')
 )
 
